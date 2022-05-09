@@ -35,9 +35,9 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ReadCinemaDto> RecuperaCinemas([FromQuery] string nomeDoFilme)
+        public IEnumerable<Cinema> RecuperaCinemas([FromQuery] string nomeDoFilme)
         {
-            return _context.Cinemas.Select(cinema => _mapper.Map<ReadCinemaDto>(cinema));
+            return _context.Cinemas;
         }
 
         [HttpGet("{id}")]

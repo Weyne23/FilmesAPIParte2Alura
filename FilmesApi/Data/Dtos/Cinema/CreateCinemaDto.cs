@@ -14,5 +14,8 @@ namespace FilmesAPI.Data.Dtos
 
         [Required(ErrorMessage = "O campo de EnderecoId é obrigatório")]
         public int EnderecoId { get; set; }
+
+        [Required(ErrorMessage = "O campo de GerenteId é obrigatório")]
+        public int GerenteId { get; set; }
     }
 }

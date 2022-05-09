@@ -23,9 +23,9 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ReadEnderecoDto> RetornasEnderecos()
+        public IEnumerable<Endereco> RetornasEnderecos()
         {
-            return _context.Enderecos.Select(endereco => _mapper.Map<ReadEnderecoDto>(endereco));
+            return _context.Enderecos;
         }
 
         [HttpGet("{id}")]

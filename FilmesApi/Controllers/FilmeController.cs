@@ -35,9 +35,9 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ReadFilmeDto> RecuperaFilmes()
+        public IEnumerable<Filme> RecuperaFilmes()
         {
-            return _context.Filmes.Select(filme => _mapper.Map<ReadFilmeDto>(filme));
+            return _context.Filmes;
         }
 
         [HttpGet("{id}")]
@@ -78,6 +78,5 @@ namespace FilmesAPI.Controllers
             _context.SaveChanges();
             return NoContent();
         }
-
     }
 }
