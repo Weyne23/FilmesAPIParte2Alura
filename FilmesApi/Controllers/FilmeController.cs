@@ -1,6 +1,5 @@
 ﻿
 using AutoMapper;
-using FilmesApi.Data;
 using FilmesAPI.Data;
 using FilmesAPI.Data.Dtos;
 using FilmesAPI.Models;
@@ -36,9 +35,9 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Filme> RecuperaFilmes()
+        public IEnumerable<ReadFilmeDto> RecuperaFilmes()
         {
-            return _context.Filmes;
+            return _context.Filmes.Select(filme => _mapper.Map<ReadFilmeDto>(filme));
         }
 
         [HttpGet("{id}")]
