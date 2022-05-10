@@ -19,17 +19,8 @@ namespace FilmesApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        public IActionResult AdicionarSessao(CreateSessaoDto dto)
-        {
-            var sessao = _mapper.Map<Sessao>(dto);
-            _context.Sessoes.Add(sessao);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(RecuperarSessoesPorId), new {Id = sessao.Id}, sessao);
-        }
-
         [HttpGet("{id}")]
-        public IActionResult RecuperarSessoesPorId(int id)
+        public IActionResult RecuperarSessaoPorId(int id)
         {
             var sessao = _context.Sessoes.Find(id);
 
@@ -38,5 +29,15 @@ namespace FilmesApi.Controllers
 
             return Ok(_mapper.Map<ReadSessaoDto>(sessao));
         }
+
+        [HttpPost]
+        public IActionResult AdicionarSessao(CreateSessaoDto dto)
+        {
+            var sessao = _mapper.Map<Sessao>(dto);
+            _context.Sessoes.Add(sessao);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(RecuperarSessaoPorId), new {Id = sessao.Id}, sessao);
+        }
+
     }
 }
