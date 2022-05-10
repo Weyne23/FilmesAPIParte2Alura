@@ -24,11 +24,22 @@ namespace FilmesAPI.Data
                 .HasForeignKey(gerente => gerente.GerenteId);
                 //.IsRequired(false); Permitiria a criacao de um cinema com o GerenteId nulo
                 //.OnDelete(DeleteBehavior.Restrict); trocar forma de delecao de cascata para restrito
+
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.Filme)
+                .WithMany(filme => filme.Sessoes)
+                .HasForeignKey(filme => filme.FilmeId);
+
+            builder.Entity<Sessao>()
+                .HasOne(sessao => sessao.Cinema)
+                .WithMany(cinema => cinema.Sessoes)
+                .HasForeignKey(sessao => sessao.CinemaId);
         }
 
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Gerente> Gerentes { get; set; }
+        public DbSet<Sessao> Sessoes { get; set; }
     }
 }
