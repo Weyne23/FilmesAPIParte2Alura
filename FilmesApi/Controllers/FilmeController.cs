@@ -34,10 +34,26 @@ namespace FilmesAPI.Controllers
             return CreatedAtAction(nameof(RecuperaFilmesPorId), new { Id = filme.Id }, filme);
         }
 
-        [HttpGet]
-        public IEnumerable<Filme> RecuperaFilmes()
+        [HttpGet()]
+        public IActionResult RecuperaFilmes([FromQuery] int? classificacaoEtaria = null)
         {
-            return _context.Filmes;
+            IEnumerable<Filme> filmes;
+            if(classificacaoEtaria == null)
+            {
+                filmes = _context.Filmes;
+            }
+            else
+            {
+                filmes = _context.Filmes.Where(filme => filme.ClassificacaoEtaria <= classificacaoEtaria);
+            }
+
+            if (filmes != null)
+            {
+                IEnumerable<ReadFilmeDto> readDto = _mapper.Map<IEnumerable<ReadFilmeDto>>(filmes);
+                return Ok(readDto);
+            }
+
+            return NotFound();
         }
 
         [HttpGet("{id}")]
