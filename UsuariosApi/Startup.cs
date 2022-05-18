@@ -35,6 +35,7 @@ namespace UsuariosApi
             services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
                 .AddEntityFrameworkStores<UserDbContext>();
             services.AddScoped<CadastroService, CadastroService>();
+            services.AddScoped<LogoutService, LogoutService>();
             services.AddScoped<LoginService, LoginService>();
             services.AddScoped<TokenService, TokenService>();
             services.AddControllers();
