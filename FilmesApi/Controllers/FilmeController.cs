@@ -1,14 +1,7 @@
-﻿
-using AutoMapper;
-using FilmesApi.Services;
-using FilmesAPI.Data;
+﻿using FilmesApi.Services;
 using FilmesAPI.Data.Dtos;
-using FilmesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FilmesAPI.Controllers
 {
@@ -24,6 +17,7 @@ namespace FilmesAPI.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult AdicionaFilme([FromBody] CreateFilmeDto filmeDto)
         {
             var readFilmeDto = _filmeServices.AdicionaFilme(filmeDto);
