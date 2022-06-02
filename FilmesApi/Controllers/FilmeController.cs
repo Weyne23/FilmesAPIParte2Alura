@@ -24,7 +24,8 @@ namespace FilmesAPI.Controllers
             return CreatedAtAction(nameof(RecuperaFilmesPorId), new { Id = readFilmeDto.Id }, readFilmeDto);
         }
 
-        [HttpGet()]
+        [HttpGet]
+        [Authorize(Roles = "admin, regular")]
         public IActionResult RecuperaFilmes([FromQuery] int? classificacaoEtaria = null)
         {
             var readDto = _filmeServices.RecuperarFilme(classificacaoEtaria);
